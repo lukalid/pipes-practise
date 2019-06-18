@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
+      <label for="filteredStatus">Filtered Status</label>
+      <input id="filteredStatus" type="text" class="form-control" [(ngModel)]="filteredStatus">
+      <hr>
+      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <hr>
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers"
+          *ngFor="let server of servers | filter:filteredStatus:'status'"
           [ngClass]="getStatusClasses(server)">
           <strong>{{ server.name | shorten:15 }}</strong> |
           {{ server.instanceType | uppercase }} |
